@@ -36,6 +36,6 @@ public class CarrosModel {
 
     @ManyToOne(fetch = FetchType.LAZY) // Carro referencia Personagem, mas não controla o ciclo de vida dele
     @JoinColumn(name = "personagem_id") // cria uma chave estrangeira
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // hibernateLazyInitializer para ignorar propriedades do Hibernate, e o handler para evitar problemas de serialização
     private PersonagemModel personagem;
 }
