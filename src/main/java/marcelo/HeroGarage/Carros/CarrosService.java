@@ -1,10 +1,17 @@
 package marcelo.HeroGarage.Carros;
 
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class CarrosService {
-    private CarrosRepository CarrosRepository;
+
+    private final CarrosRepository carrosRepository;
+
+    public List<CarrosModel> mostrarCarros(){
+        return carrosRepository.findAll();
+    }
 }

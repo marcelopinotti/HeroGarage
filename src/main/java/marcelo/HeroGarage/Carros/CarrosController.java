@@ -1,12 +1,44 @@
 package marcelo.HeroGarage.Carros;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping
-public class CarrosController {
-    private CarrosService CarrosService;
+import java.util.List;
 
+@RestController
+@RequestMapping("/carros")
+@RequiredArgsConstructor
+public class CarrosController {
+
+    private final CarrosService carrosService;
+
+    @PostMapping("/adicionarCarro")
+    public String criarCarros(){
+        return "Carros criado com sucesso";
+    }
+
+    @GetMapping("/listar")
+    public List<CarrosModel> mostrarCarros(){
+        return carrosService.mostrarCarros();
+    }
+
+    @GetMapping("procurarCarrosid")
+    public String mostrarCarrosPorId(){
+        return "Carros encontrado";
+    }
+
+    @PutMapping("atualizarCarro")
+    public String atualizarCarros(){
+        return "Carros atualizado com sucesso";
+    }
+
+    @DeleteMapping("deletarCarrosid")
+    public String deletarCarrosPorID(){
+        return "Carros deletado com sucesso";
+    }
 }
