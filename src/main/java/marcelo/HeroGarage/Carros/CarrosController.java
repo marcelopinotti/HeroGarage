@@ -41,8 +41,8 @@ public class CarrosController {
         return "Carros atualizado com sucesso";
     }
 
-    @DeleteMapping("deletarCarrosid")
-    public String deletarCarrosPorID(){
-        return "Carros deletado com sucesso";
+    @DeleteMapping("deletar/{id}")
+    public void deletarCarros(@PathVariable Long id){
+        carrosService.deletarCarros(id);
     }
 }

@@ -25,4 +25,8 @@ public class PersonagemService {
         return personagemID.orElse(null);
     }
 
+    public void deletarPersonagem(Long id){
+        personagemRepository.deleteById(id);
+    }
+
 }

@@ -24,4 +24,7 @@ public class CarrosService {
         Optional<CarrosModel> carrosID = carrosRepository.findById(id);
         return carrosID.orElse(null);
     }
+    public void deletarCarros(Long id){
+        carrosRepository.deleteById(id);
+    }
 }
