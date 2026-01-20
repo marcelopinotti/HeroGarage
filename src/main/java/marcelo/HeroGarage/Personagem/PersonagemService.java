@@ -1,11 +1,28 @@
 package marcelo.HeroGarage.Personagem;
 
-import lombok.NoArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
-@NoArgsConstructor
 public class PersonagemService {
-    private PersonagemRepository PersonagemRepository;
+    private PersonagemRepository personagemRepository;
+
+    public PersonagemService(PersonagemRepository personagemRepository) {this.personagemRepository = personagemRepository;}
+
+    public PersonagemModel criarPersonagem(PersonagemModel personagem){return personagemRepository.save(personagem);}
+
+
+    public List<PersonagemModel> mostrarPersonagem(){
+        return personagemRepository.findAll();
+    }
+
+    // listar por id
+    public PersonagemModel mostrarPersonagemPorId(Long id){
+        Optional<PersonagemModel> personagemID = personagemRepository.findById(id);
+        return personagemID.orElse(null);
+    }
 
 }

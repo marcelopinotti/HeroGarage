@@ -1,7 +1,7 @@
 package marcelo.HeroGarage.Personagem;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -32,5 +32,6 @@ public class PersonagemModel {
     private int idade;
     private String genero;
     @OneToMany(mappedBy = "personagem",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<CarrosModel> carros;
 }
