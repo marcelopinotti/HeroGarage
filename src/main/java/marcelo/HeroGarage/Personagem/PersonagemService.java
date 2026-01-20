@@ -38,10 +38,18 @@ public class PersonagemService {
         if (personagemAtualizado == null) {
             return null;
         } else {
-            personagemAtualizado.setNome(personagem.getNome());
-            personagemAtualizado.setDesenho(personagem.getDesenho());
-            personagemAtualizado.setIdade(personagem.getIdade());
-            personagemAtualizado.setGenero(personagem.getGenero());
+            if (personagem.getNome() != null) {
+                personagemAtualizado.setNome(personagem.getNome());
+            }
+            if (personagem.getDesenho() != null) {
+                personagemAtualizado.setDesenho(personagem.getDesenho());
+            }
+            if (personagem.getIdade() != 0) {
+                personagemAtualizado.setIdade(personagem.getIdade());
+            }
+            if (personagem.getGenero() != null) {
+                personagemAtualizado.setGenero(personagem.getGenero());
+            }
             return personagemRepository.save(personagemAtualizado);
         }
     }
