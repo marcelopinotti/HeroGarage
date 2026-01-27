@@ -15,7 +15,7 @@ public class PersonagemDTO {
     private Long id;
     private String nome;
     private String desenho;
-    private int idade;
+    private Integer idade;
     private String genero;
     private List<CarrosModel> carros;
 }
