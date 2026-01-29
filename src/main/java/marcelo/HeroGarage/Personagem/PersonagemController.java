@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import marcelo.HeroGarage.exception.*;
+
 import java.util.List;
 
 @RestController
@@ -42,7 +44,7 @@ public class PersonagemController {
     public ResponseEntity<?> mostrarPersonagemPorId(@PathVariable Long id) {
         PersonagemDTO personagem = personagemService.mostrarPersonagemPorId(id);
         if (personagem == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Personagem não encontrado com o id: " + id);
+            throw new PersonagemNotFoundException("Personagem nao encontrado com o id: " + id);
         }
         return ResponseEntity.ok(personagem);
     }
@@ -55,7 +57,7 @@ public class PersonagemController {
     @PatchMapping("/atualizar/{id}")
     public ResponseEntity<String> atualizarPersonagem(@PathVariable Long id, @RequestBody PersonagemDTO personagem) {
         if (personagemService.mostrarPersonagemPorId(id) == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Personagem não encontrado com o id: " + id);
+           throw new PersonagemNotFoundException("Personagem não encontrado com o id: " + id);
         }
         return ResponseEntity.ok("Personagem atualizado com sucesso! Id: " + personagemService.atualizarPersonagem(personagem, id).getId());
     }
@@ -66,6 +68,7 @@ public class PersonagemController {
             personagemService.deletarPersonagem(id);
             return ResponseEntity.ok("Personagem deletado com sucesso!");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Personagem não encontrado.");
+        throw new PersonagemNotFoundException("Personagem não encontrado.");
     }
 }
+
