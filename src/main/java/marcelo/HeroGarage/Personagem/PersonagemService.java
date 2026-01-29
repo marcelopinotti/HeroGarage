@@ -57,16 +57,17 @@ public class PersonagemService {
         Optional<PersonagemModel> personagemId = personagemRepository.findById(id);
         if (personagemId.isPresent()) {
             PersonagemModel personagemAtualizado = personagemId.get();
-            setIfNotNull(personagemDTO.getNome(), personagemAtualizado::setNome);
-            setIfNotNull(personagemDTO.getDesenho(), personagemAtualizado::setDesenho);
-            setIfNotNull(personagemDTO.getIdade(), personagemAtualizado::setIdade);
-            setIfNotNull(personagemDTO.getGenero(), personagemAtualizado::setGenero);
+            atribuirNotNull(personagemDTO.getNome(), personagemAtualizado::setNome);
+            atribuirNotNull(personagemDTO.getDesenho(), personagemAtualizado::setDesenho);
+            atribuirNotNull(personagemDTO.getIdade(), personagemAtualizado::setIdade);
+            atribuirNotNull(personagemDTO.getGenero(), personagemAtualizado::setGenero);
             if (personagemDTO.getCarros() != null) {
                 List<Long> carrosIds = personagemDTO.getCarros().stream()
                         .map(CarrosModel::getId)
                         .filter(idCarro -> idCarro != null)
                         .collect(Collectors.toList());
                 List<CarrosModel> carros = carrosRepository.findAllById(carrosIds);
+                carros.forEach(carro -> carro.setPersonagem(personagemAtualizado));
                 personagemAtualizado.setCarros(carros);
             }
             PersonagemModel personagemSalvo = personagemRepository.save(personagemAtualizado);
