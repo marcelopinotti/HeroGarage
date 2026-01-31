@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import marcelo.HeroGarage.Personagem.PersonagemModel;
 
 
@@ -25,6 +26,7 @@ import marcelo.HeroGarage.Personagem.PersonagemModel;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "personagem")
 public class CarrosModel {
 
     @Id

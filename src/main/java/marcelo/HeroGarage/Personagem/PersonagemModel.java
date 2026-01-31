@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import marcelo.HeroGarage.Carros.CarrosModel;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
+@ToString
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PersonagemModel {
     @Id
